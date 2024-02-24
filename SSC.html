@@ -1,585 +1,592 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>SnackSakura</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body {
-      overflow-x: hidden;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ffcccb;
-    }
-
-    .small-header {
-      height: 10px;
-      background-color: rgb(255, 166, 0);
-      text-align: center;
-      color: #333;
-      padding: 1em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-    }
-
-    .small-header a {
-      text-decoration: none;
-      padding: 0.5em;
-      font-size: 1em;
-      color: #333;
-      margin-left: 20px;
-    }
-
-    .hero {
-      height: 370px;
-      background: url('bannersakurareworked.png') center/cover no-repeat;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      margin-top: 30px;
-    }
-
-    .hero img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .hero h1 {
-      font-size: 4em;
-      font-family: 'Pacifico', cursive;
-      color: white;
-      z-index: 1;
-      margin-bottom: 0.2em;
-    }
-
-    .hero p {
-      font-size: 1.5em;
-      color: white;
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-    }
-
-    .subscribe-button {
-      padding: 15px 30px;
-      background-color: rgb(90, 44, 52);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .subscribe-button:hover {
-      background-color: #cc0300;
-    }
-
-    nav {
-      position: fixed;
-      top: 30px;
-      left: 0;
-      width: 100%;
-      background-color: rgba(252, 6, 211, 0);
-      color: #333;
-      padding: 1em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background-color 0.5s ease;
-      z-index: 800;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-    }
-
-    nav a {
-      text-decoration: none;
-      padding: 0.5em;
-      font-size: 1.2em;
-      margin-left: 20px;
-      color: #ffffff;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-      color: navajowhite;
-    }
-
-    .icons a {
-      color: #ffffff;
-      margin: 0 0.5em;
-    }
-
-    .icons a:first-child {
-      margin-left: 20px;
-    }
-
-    .icons a:last-child {
-      margin-right: 40px;
-    }
-
-    .main-content {
-      text-align: center;
-      margin-top: -90px;
-    }
-
-    .main-content img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-
-    footer {
-      background-color: #4e3030;
-      color: #ffffff;
-      padding: 1em;
-      text-align: center;
-    }
-
-    h3 {
-      color: black;
-      font-size: 15px;
-    }
-
-    .snack-box-section {
-      text-align: center;
-      padding: 50px 0;
-    }
-
-    .snack-box {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .box-info {
-      text-align: center;
-      margin: 0 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .box-info h2 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
-      color: rgb(90, 44, 52);
-      background-color: white;
-      padding: 5px 20px;
-      border-radius: 20px;
-      width: 100%;
-      display: inline-block;
-    }
-
-    .prices {
-      margin: 20px 0;
-      text-align: center;
-      background-color: goldenrod;
-      display: inline-block;
-      border-radius: 20px;
-      padding: 20px;
-      box-sizing: border-box;
-      margin-top: 10px;
-    }
-
-    .prices h3 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-
-    .prices p {
-      font-size: 1.2em;
-    }
-
-    .subscribe-button {
-      padding: 15px 30px;
-      background-color: rgb(90, 44, 52);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      margin-top: 20px;
-    }
-
-    .subscribe-button:hover {
-      background-color: #cc0300;
-    }
-
-    .prices button {
-      padding: 10px 20px;
-      background-color: #ffcccb;
-      color: purple;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .prices button:hover {
-      background-color: #f38482;
-    }
-
-    .cysb {
-      margin-top: 20px;
-    }
-
-    .info {
-      margin-top: -10px;
-    }
-
-    .advertisement-section {
-      background-color: #ffcccb;
-      text-align: center;
-      padding: 20px;
-      color: #333;
-      border: 10px solid transparent;
-      background-clip: padding-box, border-box;
-      background-image: linear-gradient(to right, #01c8ff, #87e1ff, #a1f6ff, #87e1ff, #01c8ff);
-      position: relative;
-    }
-
-    .advertisement-section::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      border: 5px solid #ff66b2;
-      z-index: -1;
-    }
-
-    .advertisement-heading {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #cc0300;
-      background-color: white;
-      padding: 10px 0;
-      margin: 0;
-      animation: shine 2s infinite;
-    }
-
-    @keyframes shine {
-      0% {
-        color: red;
-      }
-
-      20% {
-        color: yellow;
-      }
-
-      40% {
-        color: orange;
-      }
-
-      60% {
-        color: green;
-      }
-
-      80% {
-        color: blue;
-      }
-
-      100% {
-        color: blueviolet;
-      }
-    }
-
-    .advertisement-image {
-      max-width: 100%;
-      height: auto;
-      margin-top: 20px;
-      border: 10px solid transparent;
-      border-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
-      border-image-slice: 1;
-    }
-
-    .cta-button {
-      padding: 15px 30px;
-      background-color: #cc0300;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      margin-top: 20px;
-      display: inline-block;
-    }
-
-    .cta-button:hover {
-      background-color: #a30000;
-    }
-
-    .cta-container {
-      margin-top: 20px;
-    }
-
-    @media screen and (max-width: 480px) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SnackSakura</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
       body {
-        font-size: 14px;
+        overflow-x: hidden;
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffcccb;
       }
 
       .small-header {
-        height: auto;
+        height: 10px;
+        background-color: rgb(255, 166, 0);
         text-align: center;
+        color: #333;
         padding: 1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
       }
 
-      .small-header h3 {
-        font-size: 14px;
+      .small-header a {
+        text-decoration: none;
+        padding: 0.5em;
+        font-size: 1em;
+        color: #333;
+        margin-left: 20px;
       }
 
       .hero {
-        height: 200px;
+        height: 370px;
+        background: url("bannersakurareworked.png") center/cover no-repeat;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-top: 30px;
       }
 
-      nav {
-        padding: 0.5em;
+      .hero img {
+        max-width: 100%;
+        height: auto;
       }
 
-      nav a {
-        font-size: 1em;
-        margin-left: 10px;
+      .hero h1 {
+        font-size: 4em;
+        font-family: "Pacifico", cursive;
+        color: white;
+        z-index: 1;
+        margin-bottom: 0.2em;
       }
 
-      .icons a {
-        margin: 0 0.3em;
-      }
-
-      .main-content {
-        margin-top: -50px;
-      }
-
-      .snack-box-section {
-        padding: 30px 0;
-      }
-
-      .box-info h2 {
+      .hero p {
         font-size: 1.5em;
-        margin-bottom: 5px;
-        padding: 5px 10px;
-        width: auto;
+        color: white;
+        z-index: 1;
       }
 
-      .prices {
-        margin: 10px 0;
-        padding: 10px;
-      }
-
-      .prices h3 {
-        font-size: 1.2em;
-        margin-bottom: 5px;
-      }
-
-      .prices p {
-        font-size: 1em;
+      .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
       }
 
       .subscribe-button {
-        padding: 10px 20px;
-        font-size: 1em;
-        margin-top: 10px;
+        padding: 15px 30px;
+        background-color: rgb(90, 44, 52);
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      .subscribe-button:hover {
+        background-color: #cc0300;
+      }
+
+      nav {
+        position: fixed;
+        top: 30px;
+        left: 0;
+        width: 100%;
+        background-color: pink;
+        color: #333;
+        padding: 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 800;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      nav a {
+        text-decoration: none;
+        padding: 0.5em;
+        font-size: 1.2em;
+        margin-left: 20px;
+        color: #ffffff;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+        color: navajowhite;
+      }
+
+      .icons a {
+        color: #ffffff;
+        margin: 0 0.5em;
+      }
+
+      .icons a:first-child {
+        margin-left: 20px;
+      }
+
+      .icons a:last-child {
+        margin-right: 40px;
+      }
+
+      .main-content {
+        text-align: center;
+        margin-top: -90px;
+      }
+
+      .main-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
       }
 
       footer {
-        padding: 0.5em;
+        background-color: #4e3030;
+        color: #ffffff;
+        padding: 1em;
+        text-align: center;
       }
 
       h3 {
-        font-size: 12px;
+        color: black;
+        font-size: 15px;
+      }
+
+      .snack-box-section {
+        text-align: center;
+        padding: 50px 0;
+      }
+
+      .snack-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box-info {
+        text-align: center;
+        margin: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .box-info h2 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+        color: rgb(90, 44, 52);
+        background-color: white;
+        padding: 5px 20px;
+        border-radius: 20px;
+        width: 100%;
+        display: inline-block;
+      }
+
+      .prices {
+        margin: 20px 0;
+        text-align: center;
+        background-color: goldenrod;
+        display: inline-block;
+        border-radius: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-top: 10px;
+      }
+
+      .prices h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+
+      .prices p {
+        font-size: 1.2em;
+      }
+
+      .subscribe-button {
+        padding: 15px 30px;
+        background-color: rgb(90, 44, 52);
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+      }
+
+      .subscribe-button:hover {
+        background-color: #cc0300;
+      }
+
+      .prices button {
+        padding: 10px 20px;
+        background-color: #ffcccb;
+        color: purple;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .prices button:hover {
+        background-color: #f38482;
+      }
+
+      .cysb {
+        margin-top: 20px;
+      }
+
+      .info {
+        margin-top: -10px;
       }
 
       .advertisement-section {
-        padding: 15px;
+        background-color: #ffcccb;
+        text-align: center;
+        padding: 20px;
+        color: #333;
+        border: 10px solid transparent;
+        background-clip: padding-box, border-box;
+        background-image: linear-gradient(
+          to right,
+          #01c8ff,
+          #87e1ff,
+          #a1f6ff,
+          #87e1ff,
+          #01c8ff
+        );
+        position: relative;
+      }
+
+      .advertisement-section::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 5px solid #ff66b2;
+        z-index: -1;
       }
 
       .advertisement-heading {
-        font-size: 1.2em;
-        padding: 5px 0;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #cc0300;
+        background-color: white;
+        padding: 10px 0;
+        margin: 0;
+        animation: shine 2s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          color: red;
+        }
+
+        20% {
+          color: yellow;
+        }
+
+        40% {
+          color: orange;
+        }
+
+        60% {
+          color: green;
+        }
+
+        80% {
+          color: blue;
+        }
+
+        100% {
+          color: blueviolet;
+        }
       }
 
       .advertisement-image {
-        margin-top: 10px;
-        border-width: 5px;
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+        border: 10px solid transparent;
+        border-image: linear-gradient(
+          to right,
+          violet,
+          indigo,
+          blue,
+          green,
+          yellow,
+          orange,
+          red
+        );
+        border-image-slice: 1;
       }
 
       .cta-button {
-        padding: 10px 20px;
-        font-size: 1em;
-        margin-top: 10px;
+        padding: 15px 30px;
+        background-color: #cc0300;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+        display: inline-block;
+      }
+
+      .cta-button:hover {
+        background-color: #a30000;
       }
 
       .cta-container {
-        margin-top: 10px;
+        margin-top: 20px;
       }
 
-      .highlight {
-        font-size: 1.2em;
+      @media screen and (max-width: 480px) {
+        body {
+          font-size: 14px;
+        }
+
+        .small-header {
+          height: auto;
+          text-align: center;
+          padding: 1em;
+        }
+
+        .small-header h3 {
+          font-size: 14px;
+        }
+
+        .hero {
+          height: 200px;
+        }
+
+        nav {
+          padding: 0.5em;
+        }
+
+        nav a {
+          font-size: 1em;
+          margin-left: 10px;
+        }
+
+        .icons a {
+          margin: 0 0.3em;
+        }
+
+        .main-content {
+          margin-top: -50px;
+        }
+
+        .snack-box-section {
+          padding: 30px 0;
+        }
+
+        .box-info h2 {
+          font-size: 1.5em;
+          margin-bottom: 5px;
+          padding: 5px 10px;
+          width: auto;
+        }
+
+        .prices {
+          margin: 10px 0;
+          padding: 10px;
+        }
+
+        .prices h3 {
+          font-size: 1.2em;
+          margin-bottom: 5px;
+        }
+
+        .prices p {
+          font-size: 1em;
+        }
+
+        .subscribe-button {
+          padding: 10px 20px;
+          font-size: 1em;
+          margin-top: 10px;
+        }
+
+        footer {
+          padding: 0.5em;
+        }
+
+        h3 {
+          font-size: 12px;
+        }
+
+        .advertisement-section {
+          padding: 15px;
+        }
+
+        .advertisement-heading {
+          font-size: 1.2em;
+          padding: 5px 0;
+        }
+
+        .advertisement-image {
+          margin-top: 10px;
+          border-width: 5px;
+        }
+
+        .cta-button {
+          padding: 10px 20px;
+          font-size: 1em;
+          margin-top: 10px;
+        }
+
+        .cta-container {
+          margin-top: 10px;
+        }
+
+        .highlight {
+          font-size: 1.2em;
+        }
       }
-    }
-  </style>
-</head>
+    </style>
+  </head>
 
-<body>
-
-  <div class="small-header">
-    <h3>Treat yourself to a delightful snack box subscription and enjoy a festive 10% off your next purchase. Use code
-      HOLIDAY10 at checkout.</h3>
-  </div>
-
-  <header class="hero">
-    <div class="hero-content">
+  <body>
+    <div class="small-header">
+      <h3>
+        Treat yourself to a delightful snack box subscription and enjoy a
+        festive 10% off your next purchase. Use code HOLIDAY10 at checkout.
+      </h3>
     </div>
-  </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Our Boxes</a></li>
-    </ul>
-    <div class="icons">
-      <a href="#"><i class="fas fa-shopping-cart"></i></a>
-      <a href="#"><i class="fas fa-search"></i></a>
-      <a href="#"><i class="fas fa-user"></i></a>
-      <a href="#" class="subscribe-button">Subscribe Now</a>
-    </div>
-  </nav>
-  <section>
-    <img src="cysb.png" alt="SnackBoxBanner" class="cysb">
-  </section>
-  <section>
-    <img src="bannerfordelivery.png" alt="DeliveryInfo" class="info">
-  </section>
+    <header class="hero">
+      <div class="hero-content"></div>
+    </header>
 
-  <section class="advertisement-section">
-    <h2 class="advertisement-heading">🎉 Don't Miss Our Miku X SnackSakura Collab! Limited Time Only! 🎁</h2>
-    <img src="mikuadd.jpg" alt="Advertisement Image" class="advertisement-image">
-    <div class="cta-container">
-      <a href="#" class="cta-button">Claim This Offer</a>
-    </div>
-  </section>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Our Boxes</a></li>
+      </ul>
+      <div class="icons">
+        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="#"><i class="fas fa-user"></i></a>
+        <a href="#" class="subscribe-button">Subscribe Now</a>
+      </div>
+    </nav>
+    <section>
+      <img src="cysb.png" alt="SnackBoxBanner" class="cysb" />
+    </section>
+    <section>
+      <img src="bannerfordelivery.png" alt="DeliveryInfo" class="info" />
+    </section>
 
-  <section class="advertisement-section">
-    <h2 class="advertisement-heading">🎉 Check Out Our Hello Kitty Collab! Limited Time Only! 🎁</h2>
-    <img src="hellokc.png" alt="Advertisement Image" class="advertisement-image">
-    <div class="cta-container">
-      <a href="#" class="cta-button">Claim This Offer</a>
-    </div>
-  </section>
+    <section class="advertisement-section">
+      <h2 class="advertisement-heading">
+        🎉 Don't Miss Our Miku X SnackSakura Collab! Limited Time Only! 🎁
+      </h2>
+      <img src="mikuadd.jpg" alt="Advertisement Image" />
+      <div class="cta-container">
+        <a href="#" class="cta-button">Claim This Offer</a>
+      </div>
+    </section>
 
-  <section class="snack-box-section">
-    <div class="snack-box">
-      <div class="box-info">
-        <h2>Variety Box</h2>
-        <img src="Snackbox1.png" alt="Snack Box">
+    <section class="advertisement-section">
+      <h2 class="advertisement-heading">
+        🎉 Check Out Our Hello Kitty Collab! Limited Time Only! 🎁
+      </h2>
+      <img src="hellokc.png" alt="Advertisement Image" />
+      <div class="cta-container">
+        <a href="#" class="cta-button">Claim This Offer</a>
       </div>
-      <div class="prices">
-        <h3>Monthly</h3>
-        <p>$29.99</p>
-        <button>Subscribe</button>
-      </div>
-      <div class="prices">
-        <h3>Bi-Monthly</h3>
-        <p>$69.99</p>
-        <button>Subscribe</button>
-      </div>
-      <div class="prices">
-        <h3>Yearly</h3>
-        <p>$139.99</p>
-        <button>Subscribe</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="snack-box-section">
-    <div class="snack-box">
-      <div class="box-info">
-        <h2>Sakura Deluxe Box</h2>
-        <img src="snackbox2.png" alt="Snack Box">
+    <section class="snack-box-section">
+      <div class="snack-box">
+        <div class="box-info">
+          <h2>Variety Box</h2>
+          <img src="Snackbox1.png" alt="Snack Box" />
+        </div>
+        <div class="prices">
+          <h3>Monthly</h3>
+          <p>$29.99</p>
+          <button>Subscribe</button>
+        </div>
+        <div class="prices">
+          <h3>Bi-Monthly</h3>
+          <p>$69.99</p>
+          <button>Subscribe</button>
+        </div>
+        <div class="prices">
+          <h3>Yearly</h3>
+          <p>$139.99</p>
+          <button>Subscribe</button>
+        </div>
       </div>
-      <div class="prices">
-        <h3>Monthly</h3>
-        <p>$29.99</p>
-        <button>Subscribe</button>
-      </div>
-      <div class="prices">
-        <h3>Bi-Monthly</h3>
-        <p>$69.99</p>
-        <button>Subscribe</button>
-      </div>
-      <div class="prices">
-        <h3>Yearly</h3>
-        <p>$139.99</p>
-        <button>Subscribe</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="snack-box-section">
-    <div class="snack-box">
-      <div class="box-info">
-        <h2>Mega Fan Favorite (Changes Every Month)</h2>
-        <img src="snackbox4.png" alt="Snack Box">
+    <section class="snack-box-section">
+      <div class="snack-box">
+        <div class="box-info">
+          <h2>Sakura Deluxe Box</h2>
+          <img src="snackbox2.png" alt="Snack Box" />
+        </div>
+        <div class="prices">
+          <h3>Monthly</h3>
+          <p>$29.99</p>
+          <button>Subscribe</button>
+        </div>
+        <div class="prices">
+          <h3>Bi-Monthly</h3>
+          <p>$69.99</p>
+          <button>Subscribe</button>
+        </div>
+        <div class="prices">
+          <h3>Yearly</h3>
+          <p>$139.99</p>
+          <button>Subscribe</button>
+        </div>
       </div>
-      <div class="prices">
-        <h3>Monthly</h3>
-        <p>$29.99</p>
-        <button>Subscribe</button>
+    </section>
+
+    <section class="snack-box-section">
+      <div class="snack-box">
+        <div class="box-info">
+          <h2>Mega Fan Favorite (Changes Every Month)</h2>
+          <img src="snackbox4.png" alt="Snack Box" />
+        </div>
+        <div class="prices">
+          <h3>Monthly</h3>
+          <p>$29.99</p>
+          <button>Subscribe</button>
+        </div>
+        <div class="prices">
+          <h3>Bi-Monthly</h3>
+          <p>$69.99</p>
+          <button>Subscribe</button>
+        </div>
+        <div class="prices">
+          <h3>Yearly</h3>
+          <p>$139.99</p>
+          <button>Subscribe</button>
+        </div>
       </div>
-      <div class="prices">
-        <h3>Bi-Monthly</h3>
-        <p>$69.99</p>
-        <button>Subscribe</button>
-      </div>
-      <div class="prices">
-        <h3>Yearly</h3>
-        <p>$139.99</p>
-        <button>Subscribe</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-
-  <footer>
-    <p>&copy; 2023 SakuraCo. All rights reserved.</p>
-  </footer>
-
-  <script>
-    window.onscroll = function () {
-      var nav = document.querySelector('nav');
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        nav.style.backgroundColor = 'rgba(250, 95, 147, 1)';
-      } else {
-        nav.style.backgroundColor = 'rgba(255, 204, 203, 0)';
-      }
-    };
-  </script>
-
-</body>
-
+    <footer>
+      <p>&copy; 2023 SakuraCo. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
